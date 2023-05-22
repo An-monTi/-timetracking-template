@@ -9,5 +9,9 @@ public interface IApplicationDbContext
 
     DbSet<TodoItem> TodoItems { get; }
 
+    //Datenbankeintragung
+    DbSet<TimeTracking> TimeTracking { get; }
+    DbSet<BookingTypes> BookingTypes { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

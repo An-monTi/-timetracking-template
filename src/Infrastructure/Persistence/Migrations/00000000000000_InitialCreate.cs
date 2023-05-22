@@ -336,6 +336,44 @@ namespace zeitag_grid_init.Infrastructure.Persistence.Migrations
                 name: "IX_TodoItems_ListId",
                 table: "TodoItems",
                 column: "ListId");
+
+            //Hinzufügen der Tabellen für TimeTracking und BookingTypes
+            migrationBuilder.CreateTable(
+                name: "TimeTracking",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RecordStart = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RecordEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TimeTracking", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TimeTracking_BookingTypes",
+                        column: x => x.Type,
+                        principalTable: "BookingTypes",
+                        principalColumn: "BookingTypeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+               name: "BookingTypes",
+               columns: table => new
+               {
+                   Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                   BookingTypeId = table.Column<int>(type: "int", nullable: false),
+                   Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+               },
+               constraints: table =>
+               {
+                   table.PrimaryKey("PK_BookingTypes", x => x.Id);
+               });
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -375,6 +413,13 @@ namespace zeitag_grid_init.Infrastructure.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "TodoLists");
+
+            migrationBuilder.DropTable(
+                name: "BookingTypes");
+
+            migrationBuilder.DropTable(
+                name: "TimeTracking");
+
         }
     }
 }

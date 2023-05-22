@@ -90,5 +90,65 @@ public class ApplicationDbContextInitialiser
 
             await _context.SaveChangesAsync();
         }
+
+        //Data Für BookingTypes
+        if (!_context.BookingTypes.Any())
+        {
+            _context.BookingTypes.Add(new BookingTypes { BookingTypeID = 0, Description = "Präsenzzeit" });
+            _context.BookingTypes.Add(new BookingTypes { BookingTypeID = 1, Description = "Pause" });
+            _context.BookingTypes.Add(new BookingTypes { BookingTypeID = 2, Description = "Krankheit oder Unfall" });
+            _context.BookingTypes.Add(new BookingTypes { BookingTypeID = 3, Description = "bezahlte Absenz" });
+            _context.BookingTypes.Add(new BookingTypes { BookingTypeID = 4, Description = "unbezahlte Absenz" });
+
+
+            await _context.SaveChangesAsync();
+        }
+
+        //Data für TimeTracking
+        if (!_context.TimeTracking.Any())
+        {
+            _context.TimeTracking.Add(new TimeTracking
+            {
+                RecordStart = DateTime.Parse("15.03.2023 9:00"),
+                RecordEnd = DateTime.Parse("15.03.2023 9:15"),
+                ShortDescription = "Stand Up",
+                Type = 0
+            });
+            _context.TimeTracking.Add(new TimeTracking
+            {
+                RecordStart = DateTime.Parse("15.03.2023 9:15"),
+                RecordEnd = DateTime.Parse("15.03.2023 10:00"),
+                ShortDescription = "Kurs",
+                Type = 3
+            });
+            _context.TimeTracking.Add(new TimeTracking
+            {
+                RecordStart = DateTime.Parse("15.03.2023 10:00"),
+                RecordEnd = DateTime.Parse("15.03.2023 10:10"),
+                ShortDescription = "",
+                Type = 1
+            });
+            _context.TimeTracking.Add(new TimeTracking
+            {
+                RecordStart = DateTime.Parse("15.03.2023 10:10"),
+                RecordEnd = DateTime.Parse("15.03.2023 12:00"),
+                ShortDescription = "Projekt Zeiterfassung 2.0",
+                Type = 0
+            });
+            _context.TimeTracking.Add(new TimeTracking
+            {
+                RecordStart = DateTime.Parse("15.03.2023 12:00"),
+                RecordEnd = DateTime.Parse("15.03.2023 12:30"),
+                ShortDescription = "",
+                Type = 1
+            });
+            _context.TimeTracking.Add(new TimeTracking
+            {
+                RecordStart = DateTime.Parse("15.03.2023 12:30"),
+                RecordEnd = DateTime.Parse("15.03.2023 17:00"),
+                ShortDescription = "Kompensation",
+                Type = 4
+            });
+        }
     }
 }

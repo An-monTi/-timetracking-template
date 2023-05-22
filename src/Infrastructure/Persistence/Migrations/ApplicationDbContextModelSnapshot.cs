@@ -531,6 +531,56 @@ namespace zeitag_grid_init.Infrastructure.Persistence.Migrations
                 {
                     b.Navigation("Items");
                 });
+
+
+            modelBuilder.Entity("zeitaf_grid_init.Domain.Entities.TimeTracking", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                b.Property<DateTime>("RecordStart")
+                    .HasColumnType("datetime2");
+
+                b.Property<DateTime>("RecordEnd")
+                    .HasColumnType("datetime2");
+
+                b.Property<string>("Description")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<int>("Type")
+                    .HasColumnType("int");
+
+                b.HasKey("Id");
+
+                b.HasIndex("Type");
+
+                b.ToTable("TimeTracking");
+            });
+
+            modelBuilder.Entity("zeitaf_grid_init.Domain.Entities.BookingTypes", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                b.Property<int>("BookingTypeId")
+                    .HasColumnType("int");
+
+                b.Property<string>("Description")
+                    .HasColumnType("nvarchar(max)");
+
+                b.HasKey("Id");
+
+                b.ToTable("BookingTypes");
+            });
+
+
+
 #pragma warning restore 612, 618
         }
     }

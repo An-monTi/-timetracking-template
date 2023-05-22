@@ -31,6 +31,9 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
 
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
 
+    public DbSet<TimeTracking> TimeTracking => Set<TimeTracking>();
+    public DbSet<BookingTypes> BookingTypes => Set<BookingTypes>();
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
