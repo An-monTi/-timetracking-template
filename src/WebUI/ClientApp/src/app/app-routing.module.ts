@@ -5,12 +5,14 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { TodoComponent } from './todo/todo.component';
 import { TokenComponent } from './token/token.component';
+import { ZeiterfassungComponent } from './zeiterfassung/zeiterfassung.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'counter', component: CounterComponent },
   { path: 'todo', component: TodoComponent, canActivate: [AuthorizeGuard] },
-  { path: 'token', component: TokenComponent, canActivate: [AuthorizeGuard] }
+  { path: 'token', component: TokenComponent, canActivate: [AuthorizeGuard] },
+  { path: 'zeiterfassung', component: ZeiterfassungComponent }
 ];
 
 @NgModule({
